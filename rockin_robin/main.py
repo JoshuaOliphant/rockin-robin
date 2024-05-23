@@ -6,6 +6,10 @@ from crewai_tools import (
   SerperDevTool
 )
 from custom_tools.markdown_to_pdf import MarkdownToPDFTool
+import shutil
+import click
+from trogon import tui
+import os
 
 search_tool = SerperDevTool()
 scrape_tool = ScrapeWebsiteTool()
@@ -210,4 +214,38 @@ job_application_inputs = {
     """
 }
 
-result = job_application_crew.kickoff(inputs=job_application_inputs)
+
+@tui()
+@click.group()
+def cli():
+    pass
+
+
+@cli.command()
+@click.option('--job_posting_url', '-j', help='The URL of the job posting to extract requirements.')
+@click.option('--github_url', '-g', help='The GitHub URL of the candidate for profiling.')
+@click.option('--personal_writeup', '-p', help='The personal write-up of the candidate for profiling.')
+@click.option('--output_dir', '-o', default='./', help='The directory to save the PDF resume.')
+def prepare_resume(job_posting_url, github_url, personal_writeup, output_dir):
+    job_application_inputs = {
+        'job_posting_url': job_posting_url,
+        'github_url': github_url,
+        'personal_writeup': personal_writeup
+    }
+
+    result = job_application_crew.kickoff(inputs=job_application_inputs)
+
+    if result:
+        print("Job application process completed successfully.")
+        print("Tailored resume saved as PDF.")
+    else:
+        print("Job application process failed. Please check the inputs and try again.")
+
+    # Move the PDF file to the specified output directory
+    if result and output_dir:
+        pdf_file_path = os.path.join('./tailored_resume.pdf')
+        shutil.move(pdf_file_path, output_dir)
+
+
+if __name__ == '__main__':
+    cli()

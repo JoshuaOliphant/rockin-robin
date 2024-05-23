@@ -12,6 +12,23 @@ a job description.
 - pandoc, if using mac then `brew install pandoc`
 - latex, if using mac then `brew install mactex`
 
+## Command Line Usage
+
+This project uses the Click and Trogon libraries to provide a command line
+interface.
+
+```bash
+python3 rockin_robin/main.py --help
+Usage: main.py [OPTIONS] COMMAND [ARGS]...
+
+Options:
+  --help  Show this message and exit.
+
+Commands:
+  prepare-resume
+  tui             Open Textual TUI.
+```
+
 ## Features
 
 **Agents:**
