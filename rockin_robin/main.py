@@ -5,11 +5,15 @@ from crewai_tools import (
   MDXSearchTool,
   SerperDevTool
 )
+from custom_tools.markdown_to_pdf import MarkdownToPDFTool
 
 search_tool = SerperDevTool()
 scrape_tool = ScrapeWebsiteTool()
 read_resume = FileReadTool(file_path='joshua_oliphant_resume.md')
 semantic_search_resume = MDXSearchTool(mdx='joshua_oliphant_resume.md')
+markdown_to_pdf_converter_tool = MarkdownToPDFTool(markdown_file_path='tailored_resume.md')
+read_tailored_resume = FileReadTool(file_path='tailored_resume.md')
+
 
 # Agent 1: Researcher
 researcher = Agent(
@@ -73,6 +77,17 @@ interview_preparer = Agent(
         "and talking points, you prepare candidates for success, "
         "ensuring they can confidently address all aspects of the "
         "job they are applying for."
+    )
+)
+
+# Agent 5: Markdown to PDF Converter
+markdown_to_pdf_converter = Agent(
+    role="Markdown to PDF Converter",
+    goal="Take a markdown file and convert it to a PDF file",
+    tools=[read_tailored_resume, markdown_to_pdf_converter_tool],
+    verbose=True,
+    backstory=(
+        """Your role is to convert the tailored resume from markdown format to PDF format."""
     )
 )
 
@@ -151,22 +166,37 @@ interview_preparation_task = Task(
     agent=interview_preparer
 )
 
+# Task for Markdown to PDF Converter Agent: Convert Tailored Resume to PDF
+markdown_to_pdf_task = Task(
+    description=(
+        """Convert the tailored resume from markdown format to PDF format."""
+    ),
+    expected_output=(
+        """A PDF version of the tailored resume."""
+    ),
+    output_file="tailored_resume.pdf",
+    context=[resume_strategy_task],
+    agent=markdown_to_pdf_converter
+)
+
 job_application_crew = Crew(
     agents=[researcher,
             profiler,
             resume_strategist,
-            interview_preparer],
+            interview_preparer,
+            markdown_to_pdf_converter],
 
     tasks=[research_task,
            profile_task,
            resume_strategy_task,
-           interview_preparation_task],
+           interview_preparation_task,
+           markdown_to_pdf_task],
 
     verbose=True
 )
 
 job_application_inputs = {
-    'job_posting_url': 'https://www.linkedin.com/jobs/view/3930918660',
+    'job_posting_url': 'https://jobs.smartrecruiters.com/ServiceNow/743999977750493-senior-systems-engineer',
     'github_url': 'https://github.com/JoshuaOliphant',
     'personal_writeup': """Joshua is an experienced generalist software engineer.
     He started his career as a backend Java developer, but has since transitioned
