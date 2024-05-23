@@ -140,7 +140,8 @@ resume_strategy_task = Task(
     ),
     expected_output=(
         "An updated resume that effectively highlights the candidate's "
-        "qualifications and experiences relevant to the job."
+        "qualifications and experiences relevant to the job. Only the "
+        "resume should be outputted, not any part of the conversation or other information."
     ),
     output_file="tailored_resume.md",
     context=[research_task, profile_task],
@@ -172,7 +173,8 @@ markdown_to_pdf_task = Task(
         """Convert the tailored resume from markdown format to PDF format."""
     ),
     expected_output=(
-        """A PDF version of the tailored resume."""
+        """A PDF version of the tailored resume. Only the resume should be converted to PDF,
+        not any part of the conversation or other information."""
     ),
     output_file="tailored_resume.pdf",
     context=[resume_strategy_task],

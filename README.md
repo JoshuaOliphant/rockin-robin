@@ -6,7 +6,11 @@ a job description.
 
 ## Requirements
 
-- 
+- [Serper](https://serper.dev/) environment variable `SERPER_API_KEY`
+- OpenAI environment variable `OPENAI_API_KEY`
+- OpenAI model name environment variable `OPENAI_MODEL_NAME`
+- pandoc, if using mac then `brew install pandoc`
+- latex, if using mac then `brew install mactex`
 
 ## Features
 
