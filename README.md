@@ -11,6 +11,7 @@ a job description.
 - OpenAI model name environment variable `OPENAI_MODEL_NAME`
 - pandoc, if using mac then `brew install pandoc`
 - latex, if using mac then `brew install mactex`
+- Poetry, [installation](https://python-poetry.org/docs/#installation)
 
 ## Command Line Usage
 
@@ -18,7 +19,7 @@ This project uses the Click and Trogon libraries to provide a command line
 interface.
 
 ```bash
-python3 rockin_robin/main.py --help
+poetry run python3 src/rockin_robin/main.py --help 
 Usage: main.py [OPTIONS] COMMAND [ARGS]...
 
 Options:
