@@ -19,7 +19,7 @@ This project uses the Click and Trogon libraries to provide a command line
 interface.
 
 ```bash
-poetry run python3 src/rockin_robin/main.py --help 
+poetry run rockin_robin --help 
 Usage: main.py [OPTIONS] COMMAND [ARGS]...
 
 Options:
