@@ -1,185 +1,55 @@
 research_task:
   description: |
-    ###Instruction###
-    Your task is to analyze the job posting URL provided ({job_posting_url}).
-    Your goal is to extract and categorize the key skills, experiences, and 
-    qualifications required for the role. The output should be structured to 
-    help job seekers tailor their resumes effectively.
-
-    ###Example###
-    Example job posting analysis:
-    - Technical skills: Python, SQL
-    - Soft skills: Communication, Teamwork
-    - Education: Bachelor’s degree in Computer Science
-    - Years of experience: 5+ years in data analysis
-    - Other qualifications: PMP Certification
-
-    ###Steps###
-    1. Carefully read through the entire job posting at the provided URL.
-    2. Identify and categorize the essential requirements into the following groups:
-       - Technical skills
-       - Soft skills
-       - Education
-       - Years of experience
-       - Other qualifications
-    3. Double-check the extracted requirements against the original job posting to ensure accuracy and completeness.
-    4. Make any necessary adjustments to the output.
+    Analyze the job posting URL provided ({job_posting_url})
+    to extract key skills, experiences, and qualifications
+    required. Use the tools to gather content and identify
+    and categorize the requirements.
 
   expected_output: |
-    ###Output Format###
-    Please provide your final output as Markdown, with all of the extracted 
-    requirements structured in a clear and organized manner.
-
-    ```markdown
-    ## Technical Skills
-    - Python
-    - SQL
-
-    ## Soft Skills
-    - Communication
-    - Teamwork
-
-    ## Education
-    - Bachelor’s degree in Computer Science
-
-    ## Years of Experience
-    - 5+ years in data analysis
-
-    ## Other Qualifications
-    - PMP Certification
-    ```
-
-    Remember, the goal is to create a clear, structured list of the key job 
-    requirements to help job seekers understand what is needed for the role. 
-    Analyze the job posting carefully and use the provided tools as needed t
-    o ensure an accurate and comprehensive output.
+    A structured list of job requirements, including necessary
+    skills, qualifications, and experiences.
 
 profile_task:
   description: |
-    ###Instruction###
-    Your task is to create a comprehensive personal and professional profile for an individual based on their GitHub profile and a personal write-up they have provided. The goal is to synthesize information from these sources to highlight the person's skills, experiences, interests, and communication style in a well-rounded profile document.
-
-    First, carefully review the individual's GitHub profile using the URL provided: {github_url}.
-
-    Explore their repositories, contributions, and activity to gather relevant information about their technical skills, projects they have worked on, and the programming languages and technologies they are proficient in. Take note of any significant contributions they have made to open-source projects or collaborative efforts that demonstrate their ability to work effectively in a team.
-
-    Next, read through the personal write-up provided by the individual:
-
-    ```
-    {personal_writeup}
-    ```
-
-    Pay attention to the additional context and insights shared in the write-up, such as their educational background, professional experiences, key achievements, and personal interests. Look for examples that highlight their communication skills, problem-solving abilities, and unique qualities that set them apart.
-
-    Now, synthesize the information you have gathered from the GitHub profile and personal write-up to create a comprehensive profile document. Use your understanding of the individual's skills, experiences, and interests to paint a holistic picture of their strengths and potential.
-
-    ###Key Areas to Cover###
-    1. **Technical Skills**: Highlight the programming languages, frameworks, tools, and technologies the individual is proficient in, backed by examples from their GitHub projects and contributions.
-    2. **Project Experience**: Showcase notable projects the individual has worked on, describing their role, the project's objectives, and the impact of their contributions. Emphasize projects that demonstrate their ability to collaborate effectively and tackle complex challenges.
-    3. **Contributions and Impact**: Discuss significant contributions the individual has made to open-source projects, communities, or organizations. Highlight instances where their work has made a positive impact or solved real-world problems.
-    4. **Professional Background**: Provide an overview of the individual's educational background, work experience, and any relevant certifications or achievements mentioned in their personal write-up.
-    5. **Communication and Collaboration**: Assess the individual's communication style based on their personal write-up and any evidence of effective collaboration found in their GitHub activity. Highlight their ability to articulate ideas, provide constructive feedback, and work well in a team environment.
-    6. **Interests and Passion**: Identify the individual's personal interests and passions based on their GitHub projects and personal write-up. Discuss how these interests align with their professional goals and contribute to their overall profile.
+    Compile a detailed personal and professional profile
+    using the GitHub ({github_url}) URLs, and personal write-up
+    ({personal_writeup}). Utilize tools to extract and
+    synthesize information from these sources.
 
   expected_output: |
-    ###Output Format###
-    Please structure your profile document in a clear and organized manner, 
-    using appropriate headings and subheadings to separate the different sections. 
-    Provide specific examples and evidence from the GitHub profile and personal 
-    write-up to support your analysis and conclusions.
-
-    ###Review and Finalization###
-    Remember to maintain a professional and objective tone throughout the profile document, focusing on the individual's strengths, accomplishments, and potential. Avoid making assumptions or subjective judgments without sufficient evidence.
-
-    Before providing your final profile document, take a moment to review the information you have gathered and ensure that your analysis is comprehensive and well-supported. If you have any doubts or need further clarification, you may ask for additional information or context.
-
-    Once you have completed the profile document, please provide it as your final response.
-    The final response will be output to a Markdown file.
-
-    Suggested Format:
-
-    ## Technical Skills
-    - List of technical skills with examples
-
-    ## Project Experience
-    - Detailed descriptions of notable projects
-
-    ## Contributions and Impact
-    - Summary of significant contributions
-
-    ## Professional Background
-    - Overview of education, work experience, and certifications
-
-    ## Communication and Collaboration
-    - Assessment of communication style and collaboration abilities
-
-    ## Interests and Passion
-    - Description of personal interests and alignment with professional goals
+    A comprehensive profile document that includes skills,
+    project experiences, contributions, interests, and
+    communication style.
 
 resume_strategy_task:
   description: |
-    ###Instruction###
-    Using the profile and job requirements obtained from previous tasks, tailor the resume to highlight the most relevant areas. Employ tools to adjust and enhance the resume content. Ensure the resume is the best possible representation of the candidate's abilities without fabricating any information. Update every section as needed to better reflect the candidate's abilities and how they match the job posting. Do not remove any existing job experience.
-
-    Please carefully review the candidate's profile, the job requirements, and the existing resume.
-
-    ###Scratchpad###
-    Brainstorm how to best update and tailor the resume to fit this specific job based on the candidate's profile and qualifications. Consider:
-    - What key skills, experiences, and accomplishments from the profile and resume best match the job requirements? How can those be highlighted?
-    - How can the existing job experiences be enhanced to emphasize the most relevant qualifications for this job?
-    - How can the overall resume structure, formatting, and language be adjusted to better target this role and employer?
-    ###End of Scratchpad###
+    Using the profile and job requirements obtained from
+    previous tasks, tailor the resume to highlight the most
+    relevant areas. Employ tools to adjust and enhance the
+    resume content. Make sure this is the best resume even but
+    don't make up any information. Update every section,
+    inlcuding the initial summary, work experience, skills,
+    and education. All to better reflrect the candidates
+    abilities and how it matches the job posting.
 
   expected_output: |
     An updated resume that effectively highlights the candidate's
     qualifications and experiences relevant to the job.
     The output should be Mardown, and assume that the Markdown file
     will be eventually converted to a PDF file, so formatting is important.
+    Preserve the general structure of the existing resume.
     DO NOT include communication with the other agents in the final output.
     DO NOT include Markdown delimiters in the final output.
 
 interview_preparation_task:
   description: |
-    ###Instruction###
-    Your task is to generate a set of interview questions and talking points to help a job candidate prepare for an interview, based on the tailored resume and job requirements. Utilize tools to generate relevant questions and discussion points. Use these inputs to create questions and discussion topics that will allow the candidate to showcase their qualifications and suitability for the position.
-
-    First, carefully review the candidate's resume and the job description. Look for areas where the candidate's skills and experience align with the requirements and responsibilities outlined in the job description.
-
-    Next, brainstorm a list of potential interview questions based on your analysis. Consider questions that will prompt the candidate to discuss their relevant qualifications, experience, and accomplishments. Also, think about questions that gauge the candidate's understanding of the role and how their background has prepared them for its specific demands.
-
-    ###Scratchpad###
-    Brainstorming questions and talking points:
-    - What key skills and experiences from the candidate's resume match the job requirements?
-    - How can questions be phrased to draw out the candidate's most relevant qualifications?
-    - What talking points will help the candidate clearly articulate their suitability for the role?
-    ###End of Scratchpad###
+    Create a set of potential interview questions and talking
+    points based on the tailored resume and job requirements.
+    Utilize tools to generate relevant questions and discussion
+    points. Make sure to use these question and talking points to
+    help the candiadte highlight the main points of the resume
+    and how it matches the job posting.
 
   expected_output: |
-    ###Output Format###
-    After brainstorming, generate a final curated set of interview questions and talking points. Aim to include around 8-10 questions and 3-5 key talking points. Focus on questions and topics that will help the candidate draw clear connections between their resume and the job requirements. The questions should allow them to highlight their most pertinent skills and qualifications.
-
-    The talking points should succinctly capture the main reasons the candidate is a strong fit for the role based on their resume. Phrase the talking points as statements the candidate could work into their interview responses to underscore their suitability.
-
-    ###Example Output###
-    **Interview Questions:**
-    1. Can you discuss a project where you utilized [specific skill] to achieve [specific outcome]?
-    2. How has your experience with [technology/tool] prepared you for this role?
-    3. Describe a time when you faced a significant challenge in a project and how you overcame it.
-    4. What strategies do you use to stay current with the latest developments in [relevant field]?
-    5. How do you approach teamwork and collaboration in a technical environment?
-    6. Can you provide an example of a successful contribution you made to an open-source project?
-    7. How do your professional goals align with the objectives of our company?
-    8. What motivates you to excel in your field?
-
-    **Key Talking Points:**
-    1. Highlight your extensive experience with [specific technology/skill], which is crucial for this role.
-    2. Emphasize your successful track record of leading projects that align with the company's goals.
-    3. Mention your ability to quickly adapt to new technologies and methodologies.
-    4. Discuss your strong problem-solving skills demonstrated through specific project examples.
-    5. Showcase your effective communication and teamwork abilities, as evidenced by your collaborative projects.
-
-    ###Review and Finalization###
-    Remember, the ultimate goal is to equip the candidate with questions and discussion points that will enable them to effectively convey how their background qualifies them for this specific job. Keep this in mind as you craft your final output. DO NOT include communication with the other agents in the final output.
-
-    Once you have completed the set of questions and talking points, please provide them as your final response.
-    The final response will be output to a Markdown file.
+    A document containing key questions and talking points
+    that the candidate should prepare for the initial interview.
