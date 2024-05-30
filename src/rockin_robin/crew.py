@@ -15,6 +15,7 @@ class ResumeCustomizerCrew():
         self.llm = ChatAnthropic(
             model_name="claude-3-sonnet-20240229",
             api_key=os.environ.get('ANTHROPIC_API_KEY'),
+            max_tokens=4000
         )
         self.tool_llm = ChatAnthropic(
             model_name="claude-3-haiku-20240307",

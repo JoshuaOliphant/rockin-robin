@@ -6,19 +6,6 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-job_application_inputs = {
-    'job_posting_url': 'https://jobs.smartrecruiters.com/ServiceNow/743999977750493-senior-systems-engineer',
-    'github_url': 'https://github.com/JoshuaOliphant',
-    'personal_writeup': """Joshua is an experienced generalist software engineer.
-    He started his career as a backend Java developer, but has since transitioned
-    to DevOps and Site Reliability Engineering. He has a strong interest in automation,
-    Kubernetes, platform engineering, and cloud technologies. Joshua is passionate
-    about learning to apply AI to solve real-world problems and is currently exploring
-    AI agents with Python and CrewAI. He is seeking a role that allows him to leverage
-    his diverse skill set and contribute to innovative projects.
-    """
-}
-
 
 @tui()
 @click.group()
