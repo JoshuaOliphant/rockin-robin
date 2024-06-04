@@ -1,55 +1,46 @@
 research_task:
   description: |
-    Analyze the job posting URL provided ({job_posting_url})
-    to extract key skills, experiences, and qualifications
-    required. Use the tools to gather content and identify
-    and categorize the requirements.
+    Analyze the job posting URL provided ({job_posting_url}) to extract key skills, 
+    experiences, and qualifications required. Utilize available tools to gather 
+    content and systematically identify and categorize the requirements.
 
   expected_output: |
-    A structured list of job requirements, including necessary
-    skills, qualifications, and experiences.
+    A structured list of job requirements, including necessary skills, qualifications, 
+    and experiences, organized for clarity and ease of reference.
 
 profile_task:
   description: |
-    Compile a detailed personal and professional profile
-    using the GitHub ({github_url}) URLs, and personal write-up
-    ({personal_writeup}). Utilize tools to extract and
-    synthesize information from these sources.
+    Compile a detailed personal and professional profile using the GitHub URL ({github_url}) and personal write-up ({personal_writeup}). Utilize available tools to extract and synthesize information from these sources.
 
   expected_output: |
-    A comprehensive profile document that includes skills,
-    project experiences, contributions, interests, and
-    communication style.
+    A comprehensive profile document that includes:
+    - Skills
+    - Project experiences
+    - Contributions
+    - Interests
+    - Communication style
 
 resume_strategy_task:
   description: |
-    Using the profile and job requirements obtained from
-    previous tasks, tailor the resume to highlight the most
-    relevant areas. Employ tools to adjust and enhance the
-    resume content. Make sure this is the best resume even but
-    don't make up any information. Update every section,
-    inlcuding the initial summary, work experience, skills,
-    and education. All to better reflrect the candidates
-    abilities and how it matches the job posting.
+    Using the profile, job requirements, and resume structure obtained from previous tasks, tailor the resume to highlight the most relevant areas. Enhance the resume content by rewording and formatting while ensuring no sections or content are removed or significantly altered. Do not fabricate any information. Update every section, including the initial summary, work experience, skills, and education, to better reflect the candidate's abilities and match the job posting.
+
+    - Preserve the original structure of the existing resume.
+    - Retain all sections and content, including Professional Experience, Technical Stack, and any other details. Do not remove or omit any information.
+    - Keep the contact information and the candidate's name consistent.
+    - Ensure the summary, if added, is concise, impactful, and no more than 3-4 lines.
+    - Do not include communication with other agents in the final output.
+    - Do not include Markdown delimiters in the final output.
+    - Do not add any additional information that is not present in the original resume. Only incorporate new details if they are verified through research tasks and pertain to the candidate's actual experience (e.g., information found on the candidate's GitHub or personal write-up).
 
   expected_output: |
-    An updated resume that effectively highlights the candidate's
-    qualifications and experiences relevant to the job.
-    The output should be Mardown, and assume that the Markdown file
-    will be eventually converted to a PDF file, so formatting is important.
-    Preserve the general structure of the existing resume.
-    DO NOT include communication with the other agents in the final output.
-    DO NOT include Markdown delimiters in the final output.
+    An updated resume that effectively highlights the candidate's qualifications and experiences relevant to the job. The output should be in Markdown format, with consideration for eventual conversion to a PDF file, ensuring proper formatting.
 
 interview_preparation_task:
   description: |
-    Create a set of potential interview questions and talking
-    points based on the tailored resume and job requirements.
-    Utilize tools to generate relevant questions and discussion
-    points. Make sure to use these question and talking points to
-    help the candiadte highlight the main points of the resume
-    and how it matches the job posting.
+    Create a set of potential interview questions and talking points based on the tailored resume and job requirements. Utilize available tools to generate relevant questions and discussion points. Ensure these questions and talking points help the candidate highlight the main points of the resume and how it matches the job posting.
 
   expected_output: |
-    A document containing key questions and talking points
-    that the candidate should prepare for the initial interview.
+    A document containing:
+    - Key interview questions
+    - Relevant talking points
+    - Suggestions on how the candidate can effectively highlight their resume's main points and their alignment with the job posting
