@@ -10,6 +10,7 @@ python = ">=3.11,<=3.13"
 crewai = {extras = ["tools"], version = "^0.30.11"}
 pypandoc = "^1.13"
 langchain-anthropic = "^0.1.13"
+tenacity = "^8.3.0"
 
 [tool.poetry.scripts]
 rockin_robin = "rockin_robin.main:cli"
