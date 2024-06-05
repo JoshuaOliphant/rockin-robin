@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1 class="text-3xl font-bold mb-4">Resume Customizer</h1>
+<form hx-post="/process" hx-target="#results" class="space-y-4">
+    <div>
+        <label class="block text-sm font-medium text-gray-700">Job Posting URL</label>
+        <input type="url" name="job_posting_url" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">
+    </div>
+    <div>
+        <label class="block text-sm font-medium text-gray-700">GitHub URL</label>
+        <input type="url" name="github_url" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm">
+    </div>
+    <div>
+        <label class="block text-sm font-medium text-gray-700">Personal Write-up</label>
+        <textarea name="personal_writeup" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm"></textarea>
+    </div>
+    <button type="submit" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700">Submit</button>
+</form>
+<div id="results"></div>
+{% endblock %}

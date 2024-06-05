@@ -12,7 +12,7 @@ pypandoc = "^1.13"
 langchain-anthropic = "^0.1.13"
 
 [tool.poetry.scripts]
-rockin_robin = "src.rockin_robin.main:cli"
+rockin_robin = "rockin_robin.main:cli"
 
 
 [build-system]

@@ -1,0 +1,9 @@
+<div class="mt-8">
+    <h2 class="text-2xl font-bold mb-4">Updated Resume</h2>
+    <pre>{{ updated_resume }}</pre>
+    <a href="{{ url_for('main.download_file', filename=resume_filename) }}" class="text-blue-500 hover:underline">Download Updated Resume</a>
+
+    <h2 class="text-2xl font-bold mb-4 mt-6">Interview Preparation</h2>
+    <pre>{{ interview_prep }}</pre>
+    <a href="{{ url_for('main.download_file', filename=interview_filename) }}" class="text-blue-500 hover:underline">Download Interview Preparation</a>
+</div>
