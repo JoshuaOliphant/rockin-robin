@@ -19,18 +19,19 @@ This project uses the Click and Trogon libraries to provide a command line
 interface.
 
 ```bash
-poetry run rockin_robin --help 
-Usage: main.py [OPTIONS] COMMAND [ARGS]...
+poetry run rockin_robin --help   
+Usage: rockin_robin [OPTIONS] COMMAND [ARGS]...
 
 Options:
   --help  Show this message and exit.
 
 Commands:
   prepare-resume
+  run-flask       Run the Flask development server.
   tui             Open Textual TUI.
 ```
 
-## Features
+## CrewAI Features
 
 **Agents:**
 
