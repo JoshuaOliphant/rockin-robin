@@ -1,6 +1,6 @@
 from crewai import Crew, Task, Agent
 from crewai.project import CrewBase, agent, crew, task
-from langchain_anthropic import ChatAnthropic
+from langchain_openai import ChatOpenAI
 from crewai_tools import SerperDevTool, ScrapeWebsiteTool, FileReadTool, MDXSearchTool
 import os
 
@@ -13,14 +13,17 @@ class ResumeCustomizerCrew:
     tasks_config = "config/tasks.yaml"
 
     def __init__(self) -> None:
-        self.llm = ChatAnthropic(
-            model_name="claude-3-sonnet-20240229",
-            api_key=os.environ.get("ANTHROPIC_API_KEY"),
-            max_tokens=4096,
+        self.llm = ChatOpenAI(
+            model_name="mistralai/Mixtral-8x22B-Instruct-v0.1",
+            api_key=os.environ.get("ANYSCALE_API_KEY"),
+            max_tokens=8192,
+            base_url="https://api.endpoints.anyscale.com/v1",
         )
-        self.tool_llm = ChatAnthropic(
-            model_name="claude-3-haiku-20240307",
-            api_key=os.environ.get("ANTHROPIC_API_KEY"),
+        self.tool_llm = ChatOpenAI(
+            model_name="mistralai/Mixtral-8x22B-Instruct-v0.1",
+            api_key=os.environ.get("ANYSCALE_API_KEY"),
+            max_tokens=8192,
+            base_url="https://api.endpoints.anyscale.com/v1",
         )
 
         self.scrape_tool = ScrapeWebsiteTool()
