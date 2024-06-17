@@ -17,13 +17,17 @@ def process():
     job_posting_url = request.form.get("job_posting_url")
     github_url = request.form.get("github_url")
     personal_writeup = request.form.get("personal_writeup")
+    resume_file_path = request.form.get("resume_file_path")
 
     job_application_inputs = {
         "job_posting_url": job_posting_url,
         "github_url": github_url,
         "personal_writeup": personal_writeup,
+        "resume_file_path": resume_file_path,
     }
-    ResumeCustomizerCrew().crew().kickoff(inputs=job_application_inputs)
+    ResumeCustomizerCrew(resume_file_path=resume_file_path).crew().kickoff(
+        inputs=job_application_inputs
+    )
     tool = MarkdownToPDFTool(markdown_file_path="rockin_robin/files/tailored_resume.md")
     tool._run()
 

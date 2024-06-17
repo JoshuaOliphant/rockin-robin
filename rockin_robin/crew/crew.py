@@ -17,7 +17,7 @@ class ResumeCustomizerCrew:
 
     def __init__(self, resume_file_path) -> None:
         self.tool_llm = ChatOpenAI(
-            model_name=os.environ.get("TOOL_LLM_MODEL_NAME"),
+            model_name=os.environ.get("TOOL_MODEL_NAME"),
             api_key=os.environ.get("TOOL_MODEL_API_KEY"),
             max_tokens=os.environ.get("TOOL_MODEL_MAX_TOKENS"),
             base_url=os.environ.get("TOOL_MODEL_BASE_URL"),
