@@ -1,4 +1,4 @@
-from crewai import Crew, Task, Agent
+from crewai import Crew, Task, Agent, Process
 from crewai.project import CrewBase, agent, crew, task
 from langchain_openai import ChatOpenAI
 from crewai_tools import SerperDevTool, ScrapeWebsiteTool, FileReadTool, MDXSearchTool
@@ -13,17 +13,16 @@ class ResumeCustomizerCrew:
     tasks_config = "config/tasks.yaml"
 
     def __init__(self) -> None:
-        self.llm = ChatOpenAI(
-            model_name="mistralai/Mixtral-8x22B-Instruct-v0.1",
-            api_key=os.environ.get("ANYSCALE_API_KEY"),
-            max_tokens=8192,
-            base_url="https://api.endpoints.anyscale.com/v1",
-        )
         self.tool_llm = ChatOpenAI(
             model_name="mistralai/Mixtral-8x22B-Instruct-v0.1",
             api_key=os.environ.get("ANYSCALE_API_KEY"),
             max_tokens=8192,
             base_url="https://api.endpoints.anyscale.com/v1",
+        )
+        self.llm = ChatOpenAI(
+            model_name="gpt-4o",
+            api_key=os.environ.get("OPENAI_API_KEY"),
+            max_tokens=4096,
         )
 
         self.scrape_tool = ScrapeWebsiteTool()
@@ -39,6 +38,7 @@ class ResumeCustomizerCrew:
             function_calling_llm=self.tool_llm,
             tools=[self.search_tool, self.scrape_tool],
             verbose=True,
+            cache=True,
         )
 
     @agent
@@ -54,6 +54,7 @@ class ResumeCustomizerCrew:
                 self.search_tool,
             ],
             verbose=True,
+            cache=True,
         )
 
     @agent
@@ -69,6 +70,7 @@ class ResumeCustomizerCrew:
                 self.search_tool,
             ],
             verbose=True,
+            cache=True,
         )
 
     @agent
@@ -84,6 +86,7 @@ class ResumeCustomizerCrew:
                 self.search_tool,
             ],
             verbose=True,
+            cache=True,
         )
 
     @task
@@ -108,7 +111,11 @@ class ResumeCustomizerCrew:
         return Task(
             config=self.tasks_config["resume_strategy_task"],
             agent=self.resume_strategist(),
-            context=[self.research_task(), self.profile_task()],
+            context=[
+                self.research_task(),
+                self.profile_task(),
+                # self.resume_structure_task(),
+            ],
             output_file="rockin_robin/files/tailored_resume.md",
         )
 
@@ -127,4 +134,11 @@ class ResumeCustomizerCrew:
 
     @crew
     def crew(self) -> Crew:
-        return Crew(agents=self.agents, tasks=self.tasks, verbose=2)
+        return Crew(
+            agents=self.agents,
+            tasks=self.tasks,
+            verbose=2,
+            manager_llm=self.tool_llm,
+            process=Process.hierarchical,
+            memory=True,
+        )
