@@ -30,11 +30,17 @@ def cli():
     "-p",
     help="The personal write-up of the candidate for profiling.",
 )
-def prepare_resume(job_posting_url, github_url, personal_writeup):
+@click.option(
+    "--resume_file_path",
+    "-r",
+    help="The path to the resume file to be customized.",
+)
+def prepare_resume(job_posting_url, github_url, personal_writeup, resume_file_path):
     job_application_inputs = {
         "job_posting_url": job_posting_url,
         "github_url": github_url,
         "personal_writeup": personal_writeup,
+        "resume_file_path": resume_file_path,
     }
     ResumeCustomizerCrew().crew().kickoff(inputs=job_application_inputs)
     tool = MarkdownToPDFTool(markdown_file_path="tailored_resume.md")

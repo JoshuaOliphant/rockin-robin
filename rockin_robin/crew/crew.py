@@ -15,7 +15,7 @@ class ResumeCustomizerCrew:
     agents_config = "config/agents.yaml"
     tasks_config = "config/tasks.yaml"
 
-    def __init__(self) -> None:
+    def __init__(self, resume_file_path) -> None:
         self.tool_llm = ChatOpenAI(
             model_name=os.environ.get("TOOL_LLM_MODEL_NAME"),
             api_key=os.environ.get("TOOL_MODEL_API_KEY"),
@@ -31,8 +31,8 @@ class ResumeCustomizerCrew:
 
         self.scrape_tool = ScrapeWebsiteTool()
         self.search_tool = SerperDevTool()
-        self.file_read_tool = FileReadTool(file_path="joshua_oliphant_resume.md")
-        self.semantic_search_resume = MDXSearchTool(mdx="joshua_oliphant_resume.md")
+        self.file_read_tool = FileReadTool(file_path=resume_file_path)
+        self.semantic_search_resume = MDXSearchTool(mdx=resume_file_path)
 
     @agent
     def researcher(self) -> Agent:
