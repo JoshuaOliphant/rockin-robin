@@ -1,8 +1,9 @@
-from rockin_robin.crew.utils.markdown_to_pdf import MarkdownToPDFTool
+from rockin_robin.crew.utils.markdown_to_pdf import MarkdownToPDF
 import click
 from trogon import tui
 from rockin_robin.crew.crew import ResumeCustomizerCrew
 from rockin_robin import create_app
+import logfire
 
 app = create_app()
 
@@ -10,7 +11,7 @@ app = create_app()
 @tui()
 @click.group()
 def cli():
-    pass
+    logfire.configure()
 
 
 @cli.command()
@@ -40,7 +41,7 @@ def prepare_resume(job_posting_url, github_url, personal_writeup, resume_file_pa
         "resume_file_path": resume_file_path,
     }
     ResumeCustomizerCrew().crew().kickoff(inputs=job_application_inputs)
-    tool = MarkdownToPDFTool(markdown_file_path="tailored_resume.md")
+    tool = MarkdownToPDF(markdown_file_path="tailored_resume.md")
     tool._run()
 
 
