@@ -1,13 +1,10 @@
-from rockin_robin.crew.custom_tools.markdown_to_pdf import MarkdownToPDFTool
+from rockin_robin.crew.utils.markdown_to_pdf import MarkdownToPDFTool
 import click
 from trogon import tui
 from rockin_robin.crew.crew import ResumeCustomizerCrew
-from dotenv import load_dotenv
 from rockin_robin import create_app
 
 app = create_app()
-
-load_dotenv()
 
 
 @tui()

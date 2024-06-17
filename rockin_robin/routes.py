@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, request, send_from_directory, current_app
 from rockin_robin.crew.crew import ResumeCustomizerCrew
-from rockin_robin.crew.custom_tools.markdown_to_pdf import MarkdownToPDFTool
+from rockin_robin.crew.utils.markdown_to_pdf import MarkdownToPDF
 import os
 import logfire
 
@@ -28,7 +28,7 @@ def process():
     ResumeCustomizerCrew(resume_file_path=resume_file_path).crew().kickoff(
         inputs=job_application_inputs
     )
-    tool = MarkdownToPDFTool(markdown_file_path="rockin_robin/files/tailored_resume.md")
+    tool = MarkdownToPDF(markdown_file_path="rockin_robin/files/tailored_resume.md")
     tool._run()
 
     files_dir = os.path.join(current_app.root_path, "files")

@@ -1,14 +1,13 @@
-from crewai_tools import BaseTool
 import pypandoc
 import os
 
 
-class MarkdownToPDFTool(BaseTool):
-    name: str = "MarkdownToPDFTool"
+class MarkdownToPDF:
+    name: str = "MarkdownToPDF"
     description: str = "Converts markdown files to PDF using pypandoc."
     markdown_file_path: str = None
 
-    def _run(self) -> str:
+    def use(self) -> str:
         # Define the base output PDF file path
         base_pdf_file_path = self.markdown_file_path.replace(".md", ".pdf")
         pdf_file_path = base_pdf_file_path
@@ -32,6 +31,6 @@ class MarkdownToPDFTool(BaseTool):
 
 # Example usage
 if __name__ == "__main__":
-    tool = MarkdownToPDFTool(markdown_file_path="rockin_robin/files/tailored_resume.md")
-    result = tool._run()
+    tool = MarkdownToPDF(markdown_file_path="rockin_robin/files/tailored_resume.md")
+    result = tool.use()
     print(result)
