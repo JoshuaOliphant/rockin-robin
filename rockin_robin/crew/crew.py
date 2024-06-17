@@ -3,6 +3,9 @@ from crewai.project import CrewBase, agent, crew, task
 from langchain_openai import ChatOpenAI
 from crewai_tools import SerperDevTool, ScrapeWebsiteTool, FileReadTool, MDXSearchTool
 import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 
 @CrewBase
@@ -14,15 +17,16 @@ class ResumeCustomizerCrew:
 
     def __init__(self) -> None:
         self.tool_llm = ChatOpenAI(
-            model_name="mistralai/Mixtral-8x22B-Instruct-v0.1",
-            api_key=os.environ.get("ANYSCALE_API_KEY"),
-            max_tokens=8192,
-            base_url="https://api.endpoints.anyscale.com/v1",
+            model_name=os.environ.get("TOOL_LLM_MODEL_NAME"),
+            api_key=os.environ.get("TOOL_MODEL_API_KEY"),
+            max_tokens=os.environ.get("TOOL_MODEL_MAX_TOKENS"),
+            base_url=os.environ.get("TOOL_MODEL_BASE_URL"),
         )
         self.llm = ChatOpenAI(
-            model_name="gpt-4o",
-            api_key=os.environ.get("OPENAI_API_KEY"),
-            max_tokens=4096,
+            model_name=os.environ.get("CHAT_MODEL_NAME"),
+            api_key=os.environ.get("CHAT_MODEL_API_KEY"),
+            max_tokens=os.environ.get("CHAT_MODEL_MAX_TOKENS"),
+            base_url=os.environ.get("CHAT_MODEL_BASE_URL"),
         )
 
         self.scrape_tool = ScrapeWebsiteTool()
