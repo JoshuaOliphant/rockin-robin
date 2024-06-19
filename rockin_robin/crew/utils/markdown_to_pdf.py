@@ -5,7 +5,9 @@ import os
 class MarkdownToPDF:
     name: str = "MarkdownToPDF"
     description: str = "Converts markdown files to PDF using pypandoc."
-    markdown_file_path: str = None
+
+    def __init__(self, markdown_file_path: str) -> None:
+        self.markdown_file_path = markdown_file_path
 
     def use(self) -> str:
         # Define the base output PDF file path

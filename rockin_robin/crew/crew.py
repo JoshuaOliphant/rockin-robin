@@ -93,6 +93,47 @@ class ResumeCustomizerCrew:
             cache=True,
         )
 
+    @agent
+    def resume_validator(self) -> Agent:
+        return Agent(
+            config=self.agents_config["resume_validator"],
+            llm=self.llm,
+            function_calling_llm=self.tool_llm,
+            tools=[
+                self.file_read_tool,
+                self.semantic_search_resume,
+            ],
+            verbose=True,
+            cache=True,
+        )
+
+    @agent
+    def resume_corrector(self) -> Agent:
+        return Agent(
+            config=self.agents_config["resume_corrector"],
+            llm=self.llm,
+            function_calling_llm=self.tool_llm,
+            tools=[
+                self.file_read_tool,
+                self.semantic_search_resume,
+            ],
+            verbose=True,
+            cache=True,
+        )
+
+    @agent
+    def file_reader(self) -> Agent:
+        return Agent(
+            config=self.agents_config["file_reader"],
+            llm=self.llm,
+            function_calling_llm=self.tool_llm,
+            tools=[
+                self.file_read_tool,
+                self.semantic_search_resume,
+            ],
+            verbose=True,
+        )
+
     @task
     def research_task(self) -> Task:
         return Task(
@@ -118,7 +159,6 @@ class ResumeCustomizerCrew:
             context=[
                 self.research_task(),
                 self.profile_task(),
-                # self.resume_structure_task(),
             ],
             output_file="rockin_robin/files/tailored_resume.md",
         )
@@ -136,13 +176,42 @@ class ResumeCustomizerCrew:
             output_file="rockin_robin/files/interview_materials.md",
         )
 
+    @task
+    def file_reading_task(self) -> Task:
+        return Task(
+            config=self.tasks_config["file_reading_task"],
+            agent=self.file_reader(),
+            context=[
+                self.resume_strategy_task(),
+            ],
+        )
+
+    @task
+    def resume_validation_task(self) -> Task:
+        return Task(
+            config=self.tasks_config["resume_validation_task"],
+            agent=self.resume_validator(),
+            context=[self.resume_strategy_task(), self.file_reading_task()],
+        )
+
+    @task
+    def resume_correction_task(self) -> Task:
+        return Task(
+            config=self.tasks_config["resume_correction_task"],
+            agent=self.resume_strategist(),
+            context=[
+                self.research_task(),
+                self.resume_strategy_task(),
+            ],
+            output_file="rockin_robin/files/tailored_resume.md",
+        )
+
     @crew
     def crew(self) -> Crew:
         return Crew(
             agents=self.agents,
             tasks=self.tasks,
             verbose=2,
-            manager_llm=self.tool_llm,
-            process=Process.hierarchical,
+            process=Process.sequential,
             memory=True,
         )

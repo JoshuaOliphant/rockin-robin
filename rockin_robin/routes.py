@@ -42,12 +42,14 @@ def process():
         inputs=job_application_inputs
     )
 
-    with MarkdownToPDF() as tool:
-        tool.run()
-
     files_dir = os.path.join(current_app.root_path, "files")
     resume_path = os.path.join(files_dir, "tailored_resume.md")
     interview_path = os.path.join(files_dir, "interview_materials.md")
+
+    remove_delimiters_file(resume_path)
+
+    markdown_to_pdf = MarkdownToPDF(markdown_file_path=resume_path)
+    markdown_to_pdf.use()
 
     # Ensure the directory exists
     os.makedirs(files_dir, exist_ok=True)
@@ -74,8 +76,24 @@ def process():
     )
 
 
+def remove_delimiters_file(file_path):
+    with open(file_path, "r") as file:
+        lines = file.readlines()
+
+    # Remove markdown delimiters from the first line if it exists
+    if lines[0].strip() == "```markdown":
+        lines = lines[1:]
+
+    # Remove markdown delimiters from the last line if it exists
+    if lines[-1].strip() == "```":
+        lines = lines[:-1]
+
+    with open(file_path, "w") as file:
+        file.writelines(lines)
+
+
 @main.route("/download/<filename>")
 def download_file(filename):
     files_dir = os.path.join(current_app.root_path, "files")
-    logfire.info(files_dir)
+    logfire.info(f"Downloading file: {filename}")
     return send_from_directory(directory=files_dir, path=filename)

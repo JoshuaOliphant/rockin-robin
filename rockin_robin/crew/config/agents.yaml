@@ -48,3 +48,24 @@ interview_preparer:
     and talking points, you prepare candidates for success,
     ensuring they can confidently address all aspects of the
     job they are applying for.
+
+file_reader:
+  role: "Resume File Reader"
+  goal: "Read the tailored resume file and verify its content."
+  backstory: |
+    Your expertise lies in accurately reading and interpreting the content of files.
+    You ensure that the tailored resume is read correctly and ready for validation.
+
+resume_validator:
+  role: "Resume Validator"
+  goal: "Ensure the resume content meets all specified requirements and is correctly formatted."
+  backstory: |
+    Your role is crucial in maintaining the quality and accuracy of the resume.
+    You validate that the resume content adheres to the guidelines and is ready for submission.
+
+resume_corrector:
+  role: "Resume Corrector"
+  goal: "Correct the tailored resume based on the validation report."
+  backstory: |
+    You ensure that any issues identified in the tailored resume are corrected.
+    Your meticulous approach guarantees that the final resume is polished and ready for submission.
