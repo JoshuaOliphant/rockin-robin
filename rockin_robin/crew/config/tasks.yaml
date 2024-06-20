@@ -11,7 +11,9 @@ research_task:
     - Extract required experiences, including years of experience and specific fields.
     - Determine the essential qualifications and educational requirements.
     - Categorize the extracted information into a structured format.
+
   expected_output: |
+    A concise, structured document containing the following information:
     Key Skills:
     - [List of Skills]
 
@@ -23,7 +25,7 @@ research_task:
 
 profile_task:
   description: |
-    Your task is to compile a detailed personal and professional profile using 
+    Compile a concise personal and professional profile using 
     the provided GitHub URL and personal write-up. 
     Extract key information and synthesize it into a cohesive profile.
     Ensure thoroughness, accuracy, and clarity in your analysis.
@@ -40,7 +42,7 @@ profile_task:
     GitHub URL: {github_url}
     Personal Write-up: {personal_writeup}
   expected_output: |
-    A comprehensive profile document that includes:
+    A concise profile document that includes:
     - Skills: [List of Skills]
     - Project experiences: [List of Project Experiences]
     - Contributions: [List of Contributions]
@@ -49,24 +51,17 @@ profile_task:
 
 resume_strategy_task:
   description: |
-    Using the profile and job requirements obtained from previous tasks, tailor 
-    the resume to highlight the most relevant areas. Enhance the resume content 
-    by rewording, restructuring, and emphasizing key skills and experiences. Ensure no sections or critical content are removed or significantly altered without good reason. 
-    Do not fabricate any information.
-
-    Guidelines:
-    - Preserve the candidate's name and contact information.
-    - Make the summary impactful and concise, ideally no more than 3-4 lines.
-    - Reword and restructure professional experiences to emphasize relevance to the job.
-    - Highlight key skills and achievements, ensuring alignment with the job requirements.
-    - Maintain a clear and logical structure, enhancing readability and visual appeal.
-    - Remove redundant or less relevant information if it improves the resume's focus.
-    - Ensure the customized resume has dates and locations consistent with the original resume.
-    - Maintain the original voice and style of the candidate's resume as much as possible.
-    - Format the resume in clean Markdown, suitable for PDF conversion.
+    "Using the profile and job requirements obtained from "
+        "previous tasks, tailor the resume to highlight the most "
+        "relevant areas. Employ tools to adjust and enhance the "
+        "resume content. Make sure this is the best resume even but "
+        "don't make up any information. Update every section, "
+        "inlcuding the initial summary, work experience, skills, "
+        "and education. All to better reflrect the candidates "
+        "abilities and how it matches the job posting."
 
   expected_output: |
-    ONLY the customized resume.
+    ONLY the customized resume in clean Markdown format, ready for PDF conversion.
     
 interview_preparation_task:
   description: |
@@ -145,3 +140,31 @@ resume_correction_task:
 
   expected_output: |
     ONLY the corrected resume.
+
+aggregation_task:
+  description: |
+    "Using the tailored resumes from the resume strategist tasks, 
+    tailor the resume to highlight the most
+    relevant areas. Employ tools to adjust and enhance the
+    resume content. Make sure this is the best resume even but
+    don't make up any information. Update every section,
+    inlcuding the initial summary, work experience, skills,
+    and education. All to better reflrect the candidates
+    abilities and how it matches the job posting.
+
+    Guidelines:
+    - Review the three input resumes thoroughly.
+    - Identify the strengths and weaknesses of each resume.
+    - Merge the best elements from each resume, ensuring a coherent and logical structure.
+    - Maintain a consistent tone and style throughout the final resume.
+    - Do not fabricate any information.
+
+    Think step by step. Don't rush. Take your time.
+    If you do your BEST work, I will give you a $10,000 bonus.
+
+  expected_output: |
+    The final, aggregated resume that effectively highlights the candidate's
+    qualifications and experiences relevant to the job. The output should be in clean Markdown format,
+    ready for PDF conversion.
+
+    Output ONLY the resume content.

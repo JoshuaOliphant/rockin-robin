@@ -2,7 +2,6 @@ from flask import Blueprint, render_template, request, send_from_directory, curr
 from rockin_robin.crew.crew import ResumeCustomizerCrew
 from rockin_robin.crew.utils.markdown_to_pdf import MarkdownToPDF
 import os
-import logfire
 import html
 
 main = Blueprint("main", __name__)
@@ -35,9 +34,6 @@ def process():
         "resume_file_path": resume_file_path,
     }
 
-    logfire.info(
-        "Kicking off ResumeCustomizerCrew with inputs: {job_application_inputs}"
-    )
     ResumeCustomizerCrew(resume_file_path=resume_file_path).crew().kickoff(
         inputs=job_application_inputs
     )
@@ -95,5 +91,4 @@ def remove_delimiters_file(file_path):
 @main.route("/download/<filename>")
 def download_file(filename):
     files_dir = os.path.join(current_app.root_path, "files")
-    logfire.info(f"Downloading file: {filename}")
     return send_from_directory(directory=files_dir, path=filename)
