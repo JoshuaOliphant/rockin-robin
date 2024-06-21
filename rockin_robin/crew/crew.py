@@ -157,47 +157,6 @@ class ResumeCustomizerCrew:
             cache=True,
         )
 
-    # @agent
-    # def resume_validator(self) -> Agent:
-    #     return Agent(
-    #         config=self.agents_config["resume_validator"],
-    #         llm=self.llm,
-    #         function_calling_llm=self.tool_llm,
-    #         tools=[
-    #             self.file_read_tool,
-    #             self.semantic_search_resume,
-    #         ],
-    #         verbose=True,
-    #         cache=True,
-    #     )
-
-    # @agent
-    # def resume_corrector(self) -> Agent:
-    #     return Agent(
-    #         config=self.agents_config["resume_corrector"],
-    #         llm=self.llm,
-    #         function_calling_llm=self.tool_llm,
-    #         tools=[
-    #             self.file_read_tool,
-    #             self.semantic_search_resume,
-    #         ],
-    #         verbose=True,
-    #         cache=True,
-    #     )
-
-    # @agent
-    # def file_reader(self) -> Agent:
-    #     return Agent(
-    #         config=self.agents_config["file_reader"],
-    #         llm=self.llm,
-    #         function_calling_llm=self.tool_llm,
-    #         tools=[
-    #             self.file_read_tool,
-    #             self.semantic_search_resume,
-    #         ],
-    #         verbose=True,
-    #     )
-
     @task
     def research_task(self) -> Task:
         return Task(
