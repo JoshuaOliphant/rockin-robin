@@ -38,9 +38,6 @@ def prepare_resume(job_posting_url, github_url, personal_writeup, resume_file_pa
         "github_url": github_url,
         "personal_writeup": personal_writeup,
         "resume_file_path": resume_file_path,
-        "tailored_resume1": "rockin_robin/files/tailored_resume1.md",
-        "tailored_resume2": "rockin_robin/files/tailored_resume2.md",
-        "tailored_resume3": "rockin_robin/files/tailored_resume3.md",
     }
     ResumeCustomizerCrew().crew().kickoff(inputs=job_application_inputs)
     tool = MarkdownToPDF(markdown_file_path="tailored_resume.md")

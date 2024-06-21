@@ -42,26 +42,24 @@ profile_task:
     GitHub URL: {github_url}
     Personal Write-up: {personal_writeup}
   expected_output: |
-    A concise profile document that includes:
-    - Skills: [List of Skills]
-    - Project experiences: [List of Project Experiences]
-    - Contributions: [List of Contributions]
-    - Interests: [List of Interests]
-    - Communication style: [Analysis of Communication Style]
+    A concise profile document in Markdow
 
 resume_strategy_task:
   description: |
-    "Using the profile and job requirements obtained from "
-        "previous tasks, tailor the resume to highlight the most "
-        "relevant areas. Employ tools to adjust and enhance the "
-        "resume content. Make sure this is the best resume even but "
-        "don't make up any information. Update every section, "
-        "inlcuding the initial summary, work experience, skills, "
-        "and education. All to better reflrect the candidates "
-        "abilities and how it matches the job posting."
+    Using the profile and job requirements obtained from
+    previous tasks, tailor the resume to highlight the most
+    relevant areas. Employ tools to adjust and enhance the
+    resume content. Make sure this is the best resume even but
+    don't make up any information. Update every section,
+    inlcuding the initial summary, work experience, skills,
+    and education. All to better reflrect the candidates
+    abilities and how it matches the job posting.
+
+    - Run the truncate_prompt tool before making LLM requests.
 
   expected_output: |
-    ONLY the customized resume in clean Markdown format, ready for PDF conversion.
+    An updated resume in Markdown that effectively highlights the candidate's 
+    qualifications and experiences relevant to the job.
     
 interview_preparation_task:
   description: |
@@ -97,50 +95,6 @@ interview_preparation_task:
     - [Suggestion 4]
     - [Suggestion 5]
 
-file_reading_task:
-  description: |
-    Read the content of the tailored resume file (tailored_resume.md). Verify that the content is complete and matches the expected structure.
-
-    Guidelines:
-    - Open and read the tailored_resume.md file.
-    - Verify that the content is complete and matches the expected sections.
-    - Ensure there are no missing parts or formatting issues.
-    - If the file content is incorrect or incomplete, access the resume strategy task conversation context to extract the correct resume content.
-    - If necessary, refer to the resume strategy task conversation context to validate the content.
-
-  expected_output: |
-    A document containing the complete content of the tailored resume.
-    - File Content: [Content of tailored_resume.md]
-
-resume_validation_task:
-  description: |
-    Validate the content of the tailored resume obtained from the File Reader Agent. Ensure the resume meets all specified requirements, including completeness, formatting, and correctness.
-
-    Guidelines:
-    - Review the content for completeness.
-    - Check for formatting consistency and correctness.
-    - Ensure all sections are present and correctly structured.
-
-  expected_output: |
-    A validation report containing:
-    - Completeness Check: [Pass/Fail]
-    - Formatting Check: [Pass/Fail]
-    - Correctness Check: [Pass/Fail]
-    - Detailed Comments: [List of identified issues, if any]
-
-resume_correction_task:
-  description: |
-    Correct the tailored resume based on the validation report from the Resume Validator Agent. Ensure all identified issues are addressed and the resume is optimized for submission.
-
-    Guidelines:
-    - Review the validation report thoroughly.
-    - Correct all identified issues related to completeness, formatting, and correctness.
-    - Ensure the resume is polished and ready for submission.
-    - If necessary, refer to the resume strategy task conversation context to make corrections.
-
-  expected_output: |
-    ONLY the corrected resume.
-
 aggregation_task:
   description: |
     "Using the tailored resumes from the resume strategist tasks, 
@@ -158,13 +112,11 @@ aggregation_task:
     - Merge the best elements from each resume, ensuring a coherent and logical structure.
     - Maintain a consistent tone and style throughout the final resume.
     - Do not fabricate any information.
+    - Run the truncate_prompt tool before making LLM requests.
 
     Think step by step. Don't rush. Take your time.
     If you do your BEST work, I will give you a $10,000 bonus.
 
   expected_output: |
-    The final, aggregated resume that effectively highlights the candidate's
-    qualifications and experiences relevant to the job. The output should be in clean Markdown format,
-    ready for PDF conversion.
-
-    Output ONLY the resume content.
+    An updated resume in Markdown that effectively highlights the candidate's 
+    qualifications and experiences relevant to the job.
